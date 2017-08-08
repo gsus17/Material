@@ -1,6 +1,5 @@
-/// <reference path="../_all.ts" />
-
 module ContactManagerApp {
+
   export class MainController {
     static $inject = [
       'userService',
@@ -50,34 +49,25 @@ module ContactManagerApp {
     }
 
 
-    openToast(message: string): void {
-      this.$mdToast.show(
-        this.$mdToast.simple().textContent(message).position('top right').hideDelay(3000)
-      );
+    // openToast(message: string): void {
+    //   this.$mdToast.show(
+    //     this.$mdToast.simple().textContent(message).position('top right').hideDelay(3000)
+    //   );
+    // }
+
+    // formScope: any;
+
+    // setFormScope(scope: angular.IScope) {
+    //   this.formScope = scope;
+    // }
+
+    getNumber(value: number): any {
+      const ret: any[] = []
+      for (let cont = 0; cont < value; cont++) {
+        ret.push(cont)
+      }
+
+      return ret;
     }
-
-    formScope: any;
-
-    setFormScope(scope) {
-      this.formScope = scope;
-    }
-
-
-
-    showContactOptions($event) {
-      this.$mdBottomSheet.show({
-        parent: angular.element(document.getElementById('wrapper')),
-        templateUrl: './dist/view/contactSheet.html',
-        controller: ContactPanelController,
-        controllerAs: "cp",
-        bindToController: true,
-        targetEvent: $event
-      }).then((clickedItem) => {
-        clickedItem && console.log(clickedItem.name + ' clicked!');
-      })
-    }
-
-
-
   }
 }

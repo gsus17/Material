@@ -1,10 +1,8 @@
-/// <reference path="../_all.ts" />
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var ContactPanelController = (function () {
-        function ContactPanelController(userService, $mdBottomSheet) {
+        function ContactPanelController(userService) {
             this.userService = userService;
-            this.$mdBottomSheet = $mdBottomSheet;
             this.actions = [
                 { name: 'Phone', icon: 'phone' },
                 { name: 'Twitter', icon: 'twitter' },
@@ -13,12 +11,9 @@ var ContactManagerApp;
             ];
             this.user = userService.selectedUser;
         }
-        ContactPanelController.prototype.submitContact = function (action) {
-            this.$mdBottomSheet.hide(action);
-        };
+        ContactPanelController.$inject = ['userService'];
         return ContactPanelController;
     }());
-    ContactPanelController.$inject = ['userService', '$mdBottomSheet'];
     ContactManagerApp.ContactPanelController = ContactPanelController;
 })(ContactManagerApp || (ContactManagerApp = {}));
 //# sourceMappingURL=contactPanelController.js.map

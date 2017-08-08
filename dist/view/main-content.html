@@ -1,3 +1,13 @@
-<md-icon md-svg-icon = "{{vm.selected.img}}" class="avatar"></md-icon>
+<div layout="row">
+    <md-icon md-svg-icon="{{vm.selected.img}}" class="avatar"></md-icon>
+    <div layout="row" layout-align="center center">
+        <div ng-repeat="i in vm.getNumber(5)">
+            <ng-md-icon icon="favorite"></ng-md-icon>
+        </div>
+
+        <md-button class="md-raised md-primary">Send Message</md-button>
+    </div>
+</div>
+
 
 <h2>{{vm.selected.name}}</h2>

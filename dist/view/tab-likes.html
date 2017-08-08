@@ -1,0 +1,14 @@
+<md-content layout-padding>
+  <md-tabs>
+    <md-tab label="Likes">
+      <md-content class="md-padding">
+        <div ng-repeat="item in vm.selected.likes">{{item}}</div>
+      </md-content>
+
+    </md-tab>
+    <md-tab label="Dislikes">
+      <md-content class="md-padding">
+        <div ng-repeat="item in vm.selected.dislikes">{{item}}</div>
+      </md-content>
+    </md-tab>
+</md-content>

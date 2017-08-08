@@ -1,10 +1,8 @@
-/// <reference path="../_all.ts" />
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var PeopleService = (function () {
-        function PeopleService($q, $http) {
+        function PeopleService($q) {
             this.$q = $q;
-            this.$http = $http;
             this.allImgs = [
                 "http://www.fillmurray.com/200/200",
                 "http://www.fillmurray.com/200/201",
@@ -101,35 +99,13 @@ var ContactManagerApp;
                     ]
                 }
             ];
-            this.loadAllImgs();
         }
         PeopleService.prototype.loadAllUsers = function () {
             return this.$q.when(this.users);
         };
-        PeopleService.prototype.loadAllImgs = function () {
-            var _this = this;
-            var deferred = this.$q.defer();
-            var cont = 0;
-            // while (cont < this.allImgs.length) {
-            this.$http({
-                method: 'JSONP',
-                url: "" + this.allImgs[0],
-                headers: {
-                    "Access-Control-Allow-Headers": "*"
-                }
-            }).then(function (response) {
-                var img = response.data;
-                _this.imgs.push(img);
-            }).catch(function (response) {
-                _this.imgs.push('default');
-            });
-            // }
-            deferred.resolve(this.imgs);
-            return deferred.promise;
-        };
+        PeopleService.$inject = ['$q'];
         return PeopleService;
     }());
-    PeopleService.$inject = ['$q', '$http'];
     ContactManagerApp.PeopleService = PeopleService;
 })(ContactManagerApp || (ContactManagerApp = {}));
 //# sourceMappingURL=userService.js.map

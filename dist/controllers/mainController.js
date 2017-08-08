@@ -1,4 +1,3 @@
-/// <reference path="../_all.ts" />
 var ContactManagerApp;
 (function (ContactManagerApp) {
     var MainController = (function () {
@@ -34,34 +33,23 @@ var ContactManagerApp;
             }
             this.tabIndex = 0;
         };
-        MainController.prototype.openToast = function (message) {
-            this.$mdToast.show(this.$mdToast.simple().textContent(message).position('top right').hideDelay(3000));
+        MainController.prototype.getNumber = function (value) {
+            var ret = [];
+            for (var cont = 0; cont < value; cont++) {
+                ret.push(cont);
+            }
+            return ret;
         };
-        MainController.prototype.setFormScope = function (scope) {
-            this.formScope = scope;
-        };
-        MainController.prototype.showContactOptions = function ($event) {
-            this.$mdBottomSheet.show({
-                parent: angular.element(document.getElementById('wrapper')),
-                templateUrl: './dist/view/contactSheet.html',
-                controller: ContactManagerApp.ContactPanelController,
-                controllerAs: "cp",
-                bindToController: true,
-                targetEvent: $event
-            }).then(function (clickedItem) {
-                clickedItem && console.log(clickedItem.name + ' clicked!');
-            });
-        };
+        MainController.$inject = [
+            'userService',
+            '$mdSidenav',
+            '$mdToast',
+            '$mdDialog',
+            '$mdMedia',
+            '$mdBottomSheet'
+        ];
         return MainController;
     }());
-    MainController.$inject = [
-        'userService',
-        '$mdSidenav',
-        '$mdToast',
-        '$mdDialog',
-        '$mdMedia',
-        '$mdBottomSheet'
-    ];
     ContactManagerApp.MainController = MainController;
 })(ContactManagerApp || (ContactManagerApp = {}));
 //# sourceMappingURL=mainController.js.map

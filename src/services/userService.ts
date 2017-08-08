@@ -1,14 +1,12 @@
-/// <reference path="../_all.ts" />
 
 module ContactManagerApp {
-
   export interface IPeopleService {
     loadAllUsers(): ng.IPromise<IPeople[]>;
     selectedUser: IPeople;
   }
 
   export class PeopleService implements IPeopleService {
-    static $inject = ['$q', '$http'];
+    static $inject = ['$q'];
 
     private allImgs: string[] = [
       "http://www.fillmurray.com/200/200",
@@ -21,42 +19,13 @@ module ContactManagerApp {
     private imgs: string[] = [];
 
     constructor(
-      private $q: ng.IQService,
-      private $http: ng.IHttpService) {
-
-      this.loadAllImgs()
+      private $q: ng.IQService) {
     }
 
     selectedUser: IPeople = null;
 
     loadAllUsers(): ng.IPromise<IPeople[]> {
       return this.$q.when(this.users);
-    }
-
-    loadAllImgs(): ng.IPromise<string[]> {
-
-      const deferred: angular.IDeferred<string[]> = this.$q.defer<string[]>();
-
-      let cont: number = 0;
-
-      // while (cont < this.allImgs.length) {
-
-        this.$http({
-          method: 'JSONP',
-          url: `${this.allImgs[0]}`,
-          headers: {
-            "Access-Control-Allow-Headers": "*"
-          }
-        }).then((response) => {
-          const img: string = <any>response.data;
-          this.imgs.push(img)
-        }).catch((response) => {
-          this.imgs.push('default')
-        })
-      // }
-
-      deferred.resolve(this.imgs)
-      return deferred.promise;
     }
 
     private users: IPeople[] = [
