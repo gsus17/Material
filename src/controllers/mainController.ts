@@ -49,18 +49,6 @@ module ContactManagerApp {
     }
 
 
-    // openToast(message: string): void {
-    //   this.$mdToast.show(
-    //     this.$mdToast.simple().textContent(message).position('top right').hideDelay(3000)
-    //   );
-    // }
-
-    // formScope: any;
-
-    // setFormScope(scope: angular.IScope) {
-    //   this.formScope = scope;
-    // }
-
     getNumber(value: number): any {
       const ret: any[] = []
       for (let cont = 0; cont < value; cont++) {
